@@ -1,0 +1,86 @@
+// repeated text
+// var typed = new Typed(".typing", {
+//     string: ["Frontend Developer", "Java Developer", "Web Developer"],
+//     typeSpeed: 100,
+//     backSpeed: 100,
+//     backDelay: 1000,
+//     loop: true
+// });
+
+const navs = document.querySelectorAll('.nav-list li');
+const cube = document.querySelector('.box');
+const sections = document.querySelectorAll('.section');
+
+const resumeLists = document.querySelectorAll('.resume-list');
+const resumeBoxs = document.querySelectorAll('.resume-box');
+
+const portfolioLists = document.querySelectorAll('.portfolio-list');
+const portfolioeBoxs = document.querySelectorAll('.portfolio-box');
+
+// navbar actions and all section actions along with cube rotation when navbar is clicked
+navs.forEach((nav, idx) => {
+    nav.addEventListener('click', () => {
+        document.querySelector('.nav-list li.active').classList.remove('active');
+        nav.classList.add('active');
+
+        cube.style.transform = `rotateY(${idx * -90}deg)`;
+
+        document.querySelector('.section.active').classList.remove('active');
+        sections[idx].classList.add('active');
+
+        const array = Array.from(sections);
+        const arrSecs = array.slice(1, -1); // only requires indexes 1, 2, 3 or does not require start and end indexes
+        arrSecs.forEach(arrSec => {
+            if (arrSec.classList.contains('active')) {
+                sections[4].classList.add('action-contact');
+            }
+        });
+        if (sections[0].classList.contains('active')) {
+            sections[4].classList.remove('action-contact');
+        }
+    });
+});
+
+// resume section when clicking tab-list
+resumeLists.forEach((list, idx) => {
+    list.addEventListener('click', () => {
+        document.querySelector('.resume-list.active').classList.remove('active');
+        list.classList.add('active');
+
+        document.querySelector('.resume-box.active').classList.remove('active');
+        resumeBoxs[idx].classList.add('active');
+    });
+});
+
+// portfolio section when clicking tab-list
+portfolioLists.forEach((list, idx) => {
+    list.addEventListener('click', () => {
+        document.querySelector('.portfolio-list.active').classList.remove('active');
+        list.classList.add('active');
+
+        document.querySelector('.portfolio-box.active').classList.remove('active');
+        portfolioeBoxs[idx].classList.add('active');
+    });
+});
+
+
+
+// visibility for contact section when reloading (cube reloading animation)
+setTimeout(() => {
+    sections[4].classList.remove('active');
+}, 1500);
+
+// auto typing
+var typed = new Typed(".auto-type", {
+    strings: ["Frontend Developer", "Java Developer", "Data Analyst / BI Developer"],
+    typeSpeed: 100,
+    backSpeed: 100,
+    loop: true
+});
+
+var typed = new Typed(".auto-type-2", {
+    strings: ["Frontend Developer", "Java Developer", "Data Analyst / BI Developer"],
+    typeSpeed: 100,
+    backSpeed: 100,
+    loop: true
+});
